@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LineaController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource(name: 'productos', controller: ProductoController::class);
+Route::apiResource(name: 'linea', controller: LineaController::class);

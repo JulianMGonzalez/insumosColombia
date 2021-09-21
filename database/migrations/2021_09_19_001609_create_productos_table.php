@@ -16,8 +16,13 @@ class CreateProductosTable extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('codigo_producto');
-            $table->integer('id_linea');
-            $table->integer('id_sublinea');
+            
+            $table->unsignedInteger('id_linea');
+            $table->unsignedInteger('id_sublinea');
+
+            $table->foreign('id_linea')->references('codigo')->on('lineas');
+            $table->foreign('id_sublinea')->references('codigo')->on('sublineas');
+
             $table->text('descripcion');
             $table->decimal('costo_ultimo');
             $table->smallInteger('stock');

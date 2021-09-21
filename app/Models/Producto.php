@@ -18,4 +18,11 @@ class Producto extends Model
         'stock'
 
     ];
+
+    public function idlinea(){
+        return $this->belongsTo('App\Models\Linea');
+    }
+    public function idsublinea(){
+        return $this->belongsTo('App\Models\Sublinea');
+    }
 }
