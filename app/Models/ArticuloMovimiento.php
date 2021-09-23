@@ -18,4 +18,7 @@ class ArticuloMovimiento extends Model
 
         return $this->belongsTo('App\Models\Movimiento');
     }
+    public function idproducto(){
+        return $this->belongsTo('App\Models\Producto');
+    }
 }

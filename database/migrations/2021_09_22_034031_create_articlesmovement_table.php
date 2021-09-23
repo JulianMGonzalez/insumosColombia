@@ -19,12 +19,18 @@ class CreateArticlesmovementTable extends Migration
             $table->unsignedBigInteger('id_mov')->unique();
 
             $table->foreign('id_mov')
-            ->references('id')
-            ->on('movimientos')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+                ->references('id')
+                ->on('movimientos')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
-            $table->integer('id_producto');
+            $table->unsignedInteger('id_producto');
+
+            $table->foreign('id_producto')
+                ->references('codigo_producto')
+                ->on('productos')
+                ->onDelete('cascade');
+
             $table->integer('cantidad');
             $table->decimal('valor');
             $table->timestamps();

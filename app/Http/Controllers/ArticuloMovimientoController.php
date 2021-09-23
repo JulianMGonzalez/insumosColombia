@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArticuloMovimiento;
 use Illuminate\Http\Request;
 
 class ArticuloMovimientoController extends Controller
@@ -13,18 +14,11 @@ class ArticuloMovimientoController extends Controller
      */
     public function index()
     {
-        //
+        $movimiento = ArticuloMovimiento::all();
+
+        return \response($movimiento);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +28,13 @@ class ArticuloMovimientoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "id_mov" => "required",
+            "id_producto" => "required",
+        ]);
+
+        $producto = ArticuloMovimiento::create($request->all());
+        return \response($producto);
     }
 
     /**

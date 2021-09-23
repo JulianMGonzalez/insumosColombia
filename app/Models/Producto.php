@@ -25,4 +25,7 @@ class Producto extends Model
     public function idsublinea(){
         return $this->belongsTo('App\Models\Sublinea');
     }
+    public function costo(){
+        return $this->hasMany('App\Models\ArticuloMovimiento');
+    }
 }
