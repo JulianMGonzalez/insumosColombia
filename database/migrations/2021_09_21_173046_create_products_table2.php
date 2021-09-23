@@ -15,7 +15,7 @@ class CreateProductsTable2 extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('codigo_producto');
+            $table->integer('codigo_producto')->unique();
             
             $table->unsignedInteger('id_linea');
             $table->unsignedInteger('id_sublinea');
