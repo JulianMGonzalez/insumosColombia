@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MovimientoResource;
 use App\Models\Movimiento;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class MovimientoController extends Controller
      */
     public function index()
     {
-        $movimiento = Movimiento::all();
+        $movimiento = MovimientoResource::collection(Movimiento::all());
 
         return \response($movimiento);
     }
@@ -35,7 +36,7 @@ class MovimientoController extends Controller
             "valor_total_mov" => "required",
         ]);
 
-        $movimiento = Movimiento::create($request->all());
+        $movimiento = new MovimientoResource(Movimiento::create($request->all()));
         return \response($movimiento);
     }
 
