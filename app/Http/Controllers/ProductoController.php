@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductoResource;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $producto = Producto::all();
+        $producto = ProductoResource::collection(Producto::all());
 
         return \response($producto);
     }
@@ -32,7 +33,7 @@ class ProductoController extends Controller
             "descripcion" => "required|max:256",
         ]);
 
-        $producto = Producto::create($request->all());
+        $producto = new ProductoResource(Producto::create($request->all()));
         return \response($producto);
     }
 
@@ -57,6 +58,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $producto = Producto::findOrFail($id)->update($request->all());
         return \response($producto);
     }

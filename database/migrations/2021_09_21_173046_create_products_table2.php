@@ -24,7 +24,7 @@ class CreateProductsTable2 extends Migration
             $table->foreign('id_sublinea')->references('codigo')->on('sublineas');
 
             $table->text('descripcion');
-            $table->decimal('costo_ultimo');
+            $table->decimal('costo_ultimo')->nullable();
             $table->smallInteger('stock');
             $table->timestamps();
         });
