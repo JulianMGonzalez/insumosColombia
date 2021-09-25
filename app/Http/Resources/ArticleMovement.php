@@ -17,7 +17,7 @@ class ArticleMovement extends JsonResource
     {
         return [
             'id' => Str::of($this->id),
-            'id_mov' => Str::of($this->tipo_mov),
+            'id_mov' => Str::of($this->id_mov),
             'id_producto' => Str::of($this->id_producto),
             'cantidad' => Str::of($this->cantidad),
             'valor' => Str::of($this->valor),
