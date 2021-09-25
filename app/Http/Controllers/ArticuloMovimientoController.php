@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ArticleMovement;
 use App\Models\ArticuloMovimiento;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ArticuloMovimientoController extends Controller
      */
     public function index()
     {
-        $movimiento = ArticuloMovimiento::all();
+        $movimiento = ArticleMovement::collection(ArticuloMovimiento::all());
 
         return \response($movimiento);
     }
@@ -33,19 +34,8 @@ class ArticuloMovimientoController extends Controller
             "id_producto" => "required",
         ]);
 
-        $producto = ArticuloMovimiento::create($request->all());
+        $producto = new ArticleMovement(ArticuloMovimiento::create($request->all()));
         return \response($producto);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
