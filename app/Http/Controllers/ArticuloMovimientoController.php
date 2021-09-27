@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ArticleMovement;
 use App\Models\ArticuloMovimiento;
+use App\Models\Movimiento;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class ArticuloMovimientoController extends Controller
@@ -33,9 +35,22 @@ class ArticuloMovimientoController extends Controller
             "id_mov" => "required",
             "id_producto" => "required",
         ]);
+        $productoMovimiento = new ArticleMovement(ArticuloMovimiento::create($request->all()));
 
-        $producto = new ArticleMovement(ArticuloMovimiento::create($request->all()));
-        return \response($producto);
+        $movimiento = Movimiento::where('id',$productoMovimiento->id_mov)->first();
+        $datos_producto= Producto::where('codigo_producto',$productoMovimiento->id_producto)->first();
+
+        if($movimiento->tipo_mov == 0){
+            $datos_producto->update([
+                'costo_ultimo'=>$productoMovimiento->valor,
+                'stock'=>$datos_producto->stock - $productoMovimiento->cantidad
+            ]);
+        }else{
+            $datos_producto->update([
+                'stock'=>$datos_producto->stock + $productoMovimiento->cantidad
+            ]);
+        }
+        return \response($productoMovimiento);
     }
 
     /**

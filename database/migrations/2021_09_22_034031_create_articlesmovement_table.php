@@ -29,7 +29,8 @@ class CreateArticlesmovementTable extends Migration
             $table->foreign('id_producto')
                 ->references('codigo_producto')
                 ->on('productos')
-                ->onDelete('cascade');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->integer('cantidad');
             $table->decimal('valor');
