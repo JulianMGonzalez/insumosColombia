@@ -48,4 +48,15 @@ class LineaController extends Controller
         $linea = Linea::findOrFail($id)->update($request->all());
         return \response($linea);
     }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Linea::destroy($id);
+        return \response(content: "El producto con el id: $id ha sido eliminada");
+    }
 }
